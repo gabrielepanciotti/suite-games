@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out the Life framework
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.LIFE_FRAMEWORK_REPO || format('{0}/suite-life', github.repository_owner) }}
+          path: Life
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r backend/requirements.txt
+          python -m pip install ./Life/packages/backend-core pytest
+      - name: Run backend tests
+        env:
+          PYTHONPATH: backend
+        run: pytest backend/tests -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out the Life framework
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.LIFE_FRAMEWORK_REPO || format('{0}/suite-life', github.repository_owner) }}
+          path: Life
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: Life/package-lock.json
+      - name: Build framework packages required by the frontend
+        working-directory: Life
+        run: npm ci
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Test frontend
+        working-directory: frontend
+        run: npm test
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build

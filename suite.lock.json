@@ -1,0 +1,30 @@
+{
+  "assets": [
+    "gitignore",
+    "ruff",
+    "brain-wiki",
+    "deploy",
+    "frontend"
+  ],
+  "files": {
+    "deploy/Caddyfile": "sha256:4d740bfc5087e839ad27392aca57e4dcd3dc2b4abf461a781dd863b0aa980d53",
+    "deploy/backend.Dockerfile": "sha256:cda6c5624a2bef825b6e565f65207b0d2dcccdad15da893973660dff67728eea",
+    "deploy/backend.Dockerfile.dockerignore": "sha256:11805604ee0c3c87e71ce9ff0f35b0af98bdbb9b52cc78848ace751682f88c84",
+    "deploy/build.sh": "sha256:5d10269f971cf27da183f23c9f46e00e55e2f604331a05ebf8df7cbb1ca21cf8",
+    "deploy/compose.sh": "sha256:bac790dfcd501449bd46b0f9b03f5eb914acdd1219b839fdc8b11ac04fd649ec",
+    "deploy/docker-compose.prod.yml": "sha256:5545b37eaf8f873dad339ad42af60f57edc9e9d402bc425b6af1e9f120c12457",
+    "deploy/docker-compose.yml": "sha256:647e8a17ffe34171e7e8a3675ce95e8e14cc9bc11301adb418343930cc6d0e8f",
+    "deploy/frontend.Dockerfile": "sha256:4b42a3ee6bbdf1689a3a5f22ecf08bd7c046003cf0d4df290ed398fb014de166",
+    "deploy/frontend.Dockerfile.dockerignore": "sha256:11805604ee0c3c87e71ce9ff0f35b0af98bdbb9b52cc78848ace751682f88c84",
+    "deploy/frontend.nginx.conf": "sha256:9a935cc28e8f24ba67d94eb20a53172df679351d0d7111f6db45a6b3d7578c48",
+    "deploy/prebuild.sh": "sha256:74103d2a50a93f172dd6f957627ed364a5132114f72dbbced753d9a82c99eca4",
+    "ruff.toml": "sha256:cf28c882590d07b190f9a6a18049f53d66956c1e58ef4535d0ac23d078c02fb3"
+  },
+  "node": "games",
+  "packages": [
+    "suite-backend-core",
+    "@suite/design-system",
+    "@suite/i18n"
+  ],
+  "profile": "app"
+}

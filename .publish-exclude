@@ -1,0 +1,24 @@
+# Internal agent instructions and generated project-management notes
+CLAUDE.md
+.claude/
+forge.status.json
+overview.manifest.json
+
+# Internal knowledge-base content; retain only brain/README.md and brain/index.md
+brain/CHANGELOG.md
+brain/NODE-OVERVIEW.md
+brain/llms.txt
+brain/showcase.md
+brain/architettura/
+brain/conoscenza/
+brain/guida-utente/
+brain/operazioni/
+brain/workspace/
+
+# Machine-local configuration and generated dependencies
+.env
+.env.production
+backend/vendor/
+frontend/vendor/
+frontend/node_modules/
+backend/.venv/
