@@ -48,21 +48,23 @@ npm run dev -- --port 3382
 ```
 
 Alternatively, set `LIFE_FRAMEWORK_DIR` to the sibling framework checkout and
-start the complete Docker stack:
+prepare framework packages, then start the example Docker stack:
 
 ```bash
 export LIFE_FRAMEWORK_DIR="$(cd ../Life && pwd)"
-bash deploy/build.sh
-bash deploy/compose.sh up -d
+bash deploy/prebuild.sh
+docker compose --env-file .env -f deploy/docker-compose.example.yml up --build
 ```
 
 ## Tests
 
 The backend suite requires the Life framework package and runs with
-`PYTHONPATH=backend pytest backend/tests -q`. The frontend has a TypeScript
-check exposed as `npm test`, followed by `npm run build`. CI checks out the
-framework from the repository named by `LIFE_FRAMEWORK_REPO`; when unset, it
-uses `<repository-owner>/suite-life`.
+`PYTHONPATH=backend pytest backend/tests -q`. The frontend suite runs with
+`npm test`, followed by `npm run build`. CI checks out the framework from the
+repository named by `LIFE_FRAMEWORK_REPO`; when unset, it uses
+`<repository-owner>/suite-life`. The workflow checks out this repository as
+`repo` and the framework as its sibling `Life`, matching the local dependency
+layout.
 
 ## Configuration
 

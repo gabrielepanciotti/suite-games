@@ -1,3 +1,0 @@
-games.localhost {
-	reverse_proxy games-frontend:3382
-}

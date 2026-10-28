@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: repo
       - name: Check out the Life framework
         uses: actions/checkout@v4
         with:
@@ -21,11 +23,13 @@ jobs:
         with:
           python-version: '3.13'
       - name: Install backend dependencies
+        working-directory: repo
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r backend/requirements.txt
-          python -m pip install ./Life/packages/backend-core pytest
+          python -m pip install ../Life/packages/shared ../Life/packages/backend-core pytest
       - name: Run backend tests
+        working-directory: repo
         env:
           PYTHONPATH: backend
         run: pytest backend/tests -q
@@ -34,6 +38,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: repo
       - name: Check out the Life framework
         uses: actions/checkout@v4
         with:
@@ -43,7 +49,7 @@ jobs:
         with:
           node-version: '20'
           cache: npm
-          cache-dependency-path: Life/package-lock.json
+          cache-dependency-path: repo/frontend/package-lock.json
       - name: Build framework packages required by the frontend
         working-directory: Life
         run: npm ci
